@@ -7,6 +7,7 @@ This project aims to predict customer lifetime value (CLV) and segment customers
 ## Problem Statement
 
 E-commerce businesses typically lose 70-80% of first-time customers and spend 5-7x more on acquiring new customers than retaining existing ones. By predicting CLV early, we can:
+
 - Reduce waste by stopping heavy spending on customers likely to make only one purchase
 - Increase revenue by identifying and nurturing high-value customers from day one
 - Personalize experiences based on predicted value
@@ -15,6 +16,7 @@ E-commerce businesses typically lose 70-80% of first-time customers and spend 5-
 ## Dataset
 
 **Brazilian E-Commerce Public Dataset by Olist**
+
 - Source: [Kaggle](https://www.kaggle.com/olistbr/brazilian-ecommerce)
 - Size: 100k orders from 2016-2018
 - Features: Complete order lifecycle, customer reviews, product details
@@ -22,6 +24,7 @@ E-commerce businesses typically lose 70-80% of first-time customers and spend 5-
 - Use Case: Perfect for RFM analysis, CLV modeling, customer segmentation
 
 ### Data Overview:
+
 - **Orders**: 100k orders with timestamps and status
 - **Customers**: Customer demographics and location
 - **Order Items**: Product details and prices
@@ -33,15 +36,18 @@ E-commerce businesses typically lose 70-80% of first-time customers and spend 5-
 ## Methodology
 
 ### 1. Data Cleaning and Preprocessing
+
 - **Missing Values**: Found minimal missing data, mainly in delivery timestamps (~15%)
 - **Duplicates**: No significant duplicates in orders or customers
 - **Data Types**: Converted all date columns to datetime format
 - **Data Quality**: 96.5% successful delivery rate indicates good data reliability
 
 ### 2. Feature Engineering
+
 Developed RFM (Recency, Frequency, Monetary) features for customer analysis:
 
 **Core Features Created**:
+
 - **Recency**: Days since last purchase (mean: 117 days)
 - **Frequency**: Number of orders per customer (96.5% have only 1 order)
 - **Monetary**: Total customer spending (mean: R$160)
@@ -51,6 +57,7 @@ Developed RFM (Recency, Frequency, Monetary) features for customer analysis:
 ### 3. Exploratory Data Analysis
 
 Key findings from EDA:
+
 - **Order Distribution**: Heavy concentration of single-purchase customers
 - **Geographic Insights**: SP, RJ, and MG dominate with 60%+ of orders
 - **Temporal Patterns**: Steady growth from 2016 to 2018
@@ -60,31 +67,34 @@ Key findings from EDA:
 
 Using K-means clustering (k=4), identified distinct customer groups:
 
-| Segment | Customers | Revenue Share | Characteristics |
-|---------|-----------|---------------|-----------------|
-| 0 | 45% | 20% | Low-value, inactive |
-| 1 | 5% | 35% | High-frequency buyers |
-| 2 | 30% | 15% | Recent one-time buyers |
-| 3 | 20% | 30% | Mid-value regular customers |
+| Segment | Customers | Revenue Share | Characteristics             |
+| ------- | --------- | ------------- | --------------------------- |
+| 0       | 45%       | 20%           | Low-value, inactive         |
+| 1       | 5%        | 35%           | High-frequency buyers       |
+| 2       | 30%       | 15%           | Recent one-time buyers      |
+| 3       | 20%       | 30%           | Mid-value regular customers |
 
 ### 5. Baseline Predictive Model
 
 Implemented a simple Random Forest model as a baseline for future CLV prediction work:
 
 **Initial Model Performance**:
+
 - **R² Score**: 0.65 (using only recency and frequency features)
 - **RMSE**: R$125
 - **MAE**: R$82
 
 **Feature Importance**:
+
 1. Frequency: 75% importance
 2. Recency: 25% importance
 
-*Note: This is a preliminary model for demonstration. Full model development with additional features would be the next phase.*
+_Note: This is a preliminary model for demonstration. Full model development with additional features would be the next phase._
 
 ## Results
 
 ### EDA Key Findings
+
 1. **Customer Base Composition**:
    - 96.5% are one-time buyers (major retention opportunity)
    - Only 3.5% make repeat purchases
@@ -100,11 +110,13 @@ Implemented a simple Random Forest model as a baseline for future CLV prediction
    - Median order value: R$100
 
 ### Segmentation Insights
+
 - **High-Value Segment** (5% of customers): Generate 35% of revenue
 - **At-Risk Customers** (20% of base): Previously active, now dormant
 - **Growth Potential**: 30% are recent customers who could be converted
 
 ### Initial Model Results
+
 - Baseline model achieves R² of 0.65 (explaining 65% of variance) with minimal features
 - Frequency is 3x more predictive than recency
 - Significant room for improvement with additional features
@@ -112,12 +124,14 @@ Implemented a simple Random Forest model as a baseline for future CLV prediction
 ## Recommendations
 
 ### Immediate Actions
+
 1. **VIP Program**: Create exclusive benefits for predicted high-CLV customers
 2. **Early Engagement**: Intensive onboarding for new customers in first 30 days
 3. **Win-Back Campaign**: Target "at risk" segment with personalized offers
 4. **Budget Reallocation**: Shift 70% of acquisition budget to retention
 
 ### Long-term Strategy
+
 1. Implement real-time CLV scoring in production
 2. A/B test differentiated experiences based on predicted CLV
 3. Develop automated marketing workflows per segment
@@ -128,6 +142,7 @@ Implemented a simple Random Forest model as a baseline for future CLV prediction
 ### Requirements
 
 All dependencies are listed in `requirements.txt`:
+
 ```
 pandas>=1.3.0
 numpy>=1.21.0
@@ -142,6 +157,7 @@ ipykernel>=6.0.0
 Install all at once using: `pip install -r requirements.txt`
 
 ### Project Structure
+
 ```
 capstone_project/
 ├── README.md                        # Project documentation
@@ -162,11 +178,13 @@ capstone_project/
 ### Setup Instructions
 
 #### Prerequisites
+
 - Python 3.7 or higher
 - pip (Python package manager)
 - Git (optional, for cloning repository)
 
 #### Step 1: Clone or Download the Project
+
 ```bash
 # Option A: Clone with Git
 git clone <repository-url>
@@ -178,6 +196,7 @@ cd path/to/capstone_project
 ```
 
 #### Step 2: Create Virtual Environment
+
 It's strongly recommended to use a virtual environment to avoid package conflicts:
 
 ```bash
@@ -195,6 +214,7 @@ source venv/bin/activate
 ```
 
 #### Step 3: Install Dependencies
+
 ```bash
 # Install all required packages
 pip install -r requirements.txt
@@ -204,6 +224,7 @@ python -m ipykernel install --user --name=clv-venv --display-name="Python (CLV P
 ```
 
 #### Step 4: Download the Dataset
+
 1. Go to [Kaggle - Brazilian E-Commerce Dataset](https://www.kaggle.com/olistbr/brazilian-ecommerce)
 2. Download all CSV files
 3. Create a `data/` directory in the project folder if it doesn't exist:
@@ -213,6 +234,7 @@ python -m ipykernel install --user --name=clv-venv --display-name="Python (CLV P
 4. Extract and place all CSV files in the `data/` directory
 
 #### Step 5: Run the Analysis
+
 ```bash
 # Make sure virtual environment is activated
 # Launch Jupyter Notebook
@@ -225,6 +247,7 @@ jupyter notebook
 ```
 
 ### For Future Sessions
+
 ```bash
 # Always activate the virtual environment first
 cd /path/to/capstone_project
@@ -233,6 +256,7 @@ jupyter notebook
 ```
 
 ### Deactivating Virtual Environment
+
 ```bash
 # When done working
 deactivate
@@ -241,15 +265,18 @@ deactivate
 ### Troubleshooting
 
 **Issue: "Module not found" errors**
+
 - Make sure virtual environment is activated
 - Verify kernel is set to "Python (CLV Project)"
 - Try: `pip install -r requirements.txt` again
 
 **Issue: "No such file or directory" for data files**
+
 - Ensure all CSV files are in the `data/` folder
 - Check file names match exactly
 
 **Issue: Kernel not showing in Jupyter**
+
 - Run: `python -m ipykernel install --user --name=clv-venv --display-name="Python (CLV Project)"`
 - Restart Jupyter Notebook
 
@@ -270,14 +297,3 @@ This project successfully demonstrates how machine learning can transform e-comm
 1. Olist Brazilian E-Commerce Dataset - [Kaggle](https://www.kaggle.com/olistbr/brazilian-ecommerce)
 2. Customer Lifetime Value Prediction Using Machine Learning - [Research Paper](https://arxiv.org/abs/2009.01831)
 3. RFM Analysis for Customer Segmentation - [Journal of Database Marketing](https://link.springer.com/article/10.1057/palgrave.dbm.3240019)
-
-## Contact
-
-**Author**: [Your Name]  
-**Email**: [Your Email]  
-**LinkedIn**: [Your LinkedIn Profile URL]  
-**GitHub**: [Link to this repository]
-
----
-
-*This project was completed as part of the UC Berkeley Professional Certificate in Machine Learning and Artificial Intelligence.*
